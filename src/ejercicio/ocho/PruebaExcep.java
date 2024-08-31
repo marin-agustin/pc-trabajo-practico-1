@@ -1,13 +1,15 @@
 package ejercicio.ocho;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Random;
 
 public class PruebaExcep {
 
     public static void main(String[] args) {
-        ingresarEdad();
-        jugarRuleta();
+        //ingresarEdad();
+        //jugarRuleta();
+        agregarNumerosArray();
     }
 
     public static boolean ingresarEdad() {
@@ -56,5 +58,34 @@ public class PruebaExcep {
             return false;
         }
 
+    }
+
+    public static void agregarNumerosArray() {
+        Scanner sc = new Scanner(System.in);
+        int[] array = new int[5];
+
+        System.out.println("Ingrese 5 numeros enteros para llenar el arreglo");
+
+        try {
+            for (int i = 0; i < array.length; i++) {
+                System.out.println("Ingrese el numero para la posicion " + (i + 1));
+                array[i] = sc.nextInt();
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("No ha ingresado un numero entero");
+        } catch (Exception e) {
+            System.out.println("Error inesperado: " + e.getMessage());
+        }
+
+        System.out.println("Se imprimiran 7 numeros del arreglo");
+        try {
+            for (int i = 0; i < 7; i++) {
+                System.out.println("Numero en la posicion " + (i + 1) + " es: " + array[i]);
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Se ha intentado acceder a una posicion inexistente del arreglo");
+        } catch (Exception e) {
+            System.out.println("Error inesperado: " + e.getMessage());
+        }
     }
 }
